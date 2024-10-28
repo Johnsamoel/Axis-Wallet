@@ -1,3 +1,6 @@
+
+
+```markdown
 # Fintech Application
 
 Welcome to the Fintech Application!
@@ -17,7 +20,8 @@ Table of Contents
 
 Introduction
 
-This application allows users to create accounts, deposit and withdraw funds, and check their account balances. It features authentication, unit testing, and is structured with a clean architecture using TypeScript, Node.js, PostgreSQL, Prisma, Jest, and Express.
+This application allows users to create accounts, deposit and withdraw funds, and check their account balances.
+IT features authentication, unit testing, and is structured with a clean architecture using TypeScript, Node.js, PostgreSQL, Prisma, Jest, and Express.
 
 Main Entities
 
