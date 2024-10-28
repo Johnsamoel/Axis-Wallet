@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: AxisWalletprod
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: axiswalletdev
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+
+  app:
+    build: .
+    container_name: AxisWallet
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@AxisWalletprod:5432/axiswalletdev?schema=public
+      - TEST_DATABASE_URL="postgresql://postgres:john12345@localhost:5432/axiswallettest?schema=public"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ["./start.sh"]
+
+volumes:
+  pgdata:
