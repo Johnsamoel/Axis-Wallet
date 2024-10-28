@@ -1,33 +1,22 @@
-
-
-```markdown
-# Fintech Application
-
-Welcome to the Fintech Application!
-This repository contains a TypeScript-based Node.js application for managing user accounts and transactions.
-
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Main Entities](#main-entities)
-3. [Prerequisites](#prerequisites)
-4. [Installation](#installation)
-5. [Docker Setup](#docker-setup)
-6. [API Documentation](#api-documentation)
-7. [Running Unit Tests](#running-unit-tests)
-8. [Notes](#notes)
-9. [Enhancements](#enhancements)
-
-## Introduction
+# Axis Wallet
 
 This application allows users to create accounts, deposit and withdraw funds, and check their account balances.
 It features authentication, unit testing, and is structured with a clean architecture using TypeScript, Node.js, PostgreSQL, Prisma, Jest, and Express.
 
-## Main Entities
+## Technologies Used
 
-- **User**: Each user is allowed to have only one account.
-- **Account**: Represents the financial account linked to a user.
-- **Transaction**: Every transaction, whether it fails or succeeds, is created and can be retrieved by its ID.
+- Node.js
+- Express
+- Prisma (ORM)
+- postgress (RDMS)
+- swagger (API documentation)
+- express-validator (validating data)
+- jsonwebtoken (authentication)
+- bcrypt (hashing)
+- typescript
+- jest (unit test)
+- supertest (unit test)
+- typeScript
 
 ## Prerequisites
 
@@ -37,27 +26,70 @@ Make sure you have the following installed:
 - **PostgreSQL**
 - **Docker** (optional, for containerized setup)
 
-## Installation
+  
+## How to Run
 
-Once you clone the project, run the following commands:
+1. Clone the repository:
 
-```bash
-git clone https://github.com/yourusername/fintech-app.git
-cd fintech-app
-npm install
-
-# Run Prisma generate and migrate commands
-npx prisma generate
-npx prisma migrate dev
-
-# Run local db by providing the connection string in DATABASE_URL env variable
-
-# Run the main application
-npm run start:dev
-
-# Run tests
-npm test
+```sh
+   -> git clone https://github.com/Johnsamoel/Axis-Wallet.git
 ```
+
+2. install dependencies
+
+```sh
+ -> npm install
+```
+
+3. modify .env file
+
+```sh
+DATABASE_URL= DB_URL
+JWT_SECRET= secret
+
+```
+
+4. migrate tables
+
+```sh
+-> prisma migrate dev --name init
+install prisma cli for migration
+```
+
+5. run project
+
+```sh
+-> npm run start:dev
+```
+
+6. run tests
+
+```sh
+-> npm run test
+note: You have to create a user in db and start testing. don't forget to modify the "MainFunctionality.test.ts" user before running the test.
+```
+
+```javascript
+// Example of modifying user credentials in MainFunctionality.test.ts
+const user = {
+    email: 'your_new_user_email@example.com', // Update with the new user's email
+    password: 'your_new_user_password',         // Update with the new user's password
+};
+```
+
+7. run docs
+
+```sh
+after run application open
+http://localhost:3000/api-docs
+on the browserm swagger ui will open with api documention
+```
+
+## Main Entities
+
+- **User**: Each user is allowed to have only one account.
+- **Account**: Represents the financial account linked to a user.
+- **Transaction**: Every transaction, whether it fails or succeeds, is created and can be retrieved by its ID.
 
 ## Docker Setup
 
@@ -71,14 +103,12 @@ docker compose build
 
 API documentation was created using **Swagger**. You can access the Swagger UI to explore the available endpoints and their usage.
 
-## Running Unit Tests
 
-Before running the unit tests, you need to create a user in the database. After creating the user, modify the user email and password in `MainFunctionality.test.ts` to match the credentials of the newly created user. Otherwise, the tests will fail.
 
-```javascript
-// Example of modifying user credentials in MainFunctionality.test.ts
-const user = {
-    email: 'your_new_user_email@example.com', // Update with the new user's email
-    password: 'your_new_user_password',         // Update with the new user's password
-};
-```
+
+
+
+
+
+
+
