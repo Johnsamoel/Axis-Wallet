@@ -32,14 +32,32 @@ const authRoutes = express.Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 id:
+ *                   type: string
+ *                   example: f652db35-38bb-4330-bb4c-d07aa12df509
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2024-10-31T21:53:25.876Z"
+ *                 name:
+ *                   type: string
+ *                   example: john
+ *                 email:
+ *                   type: string
+ *                   example: 3333@test.com
+ *                 password:
+ *                   type: string
+ *                   example: "$2b$12$lMn0EQBOYSjEdbSEBOVO9udjTJJH0dhUYBqmH6mrF4qRRcdIRdoSO"
+ *       400:
+ *         description: Invalid credentials or bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
  *                 message:
  *                   type: string
- *                   example: Login successful
- *                 token:
- *                   type: string
- *                   example: your-jwt-token
- *       401:
- *         description: Invalid credentials
+ *                   example: "Bad Request"
  */
 authRoutes.post('/login', loginSchema(), Login);
 
@@ -73,14 +91,32 @@ authRoutes.post('/login', loginSchema(), Login);
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                   example: User registered successfully
- *                 userId:
- *                   type: string
- *                   example: new-user-id
+ *                 newUser:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: f652db35-38bb-4330-bb4c-d07aa12df509
+ *                     email:
+ *                       type: string
+ *                       example: 3333@test.com
+ *                     name:
+ *                       type: string
+ *                       example: john
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
+ *                       example: "2024-10-31T21:53:25.876Z"
  *       400:
  *         description: User already exists or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Bad Request"
  */
 authRoutes.post('/register', registerUserSchema(), Register);
 
@@ -102,7 +138,17 @@ authRoutes.post('/register', registerUserSchema(), Register);
  *               properties:
  *                 message:
  *                   type: string
- *                   example: Logout successful
+ *                   example: "Logged out successfully"
+ *       400:
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Bad Request"
  */
 authRoutes.post('/logout', Logout);
 

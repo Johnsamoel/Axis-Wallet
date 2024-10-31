@@ -25,17 +25,32 @@ const userRoutes = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 id:
- *                   type: string
- *                   example: valid-user-id
- *                 name:
- *                   type: string
- *                   example: Test User
- *                 email:
- *                   type: string
- *                   example: testuser@example.com
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: f652db35-38bb-4330-bb4c-d07aa12df509
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
+ *                       example: "2024-10-31T21:53:25.876Z"
+ *                     name:
+ *                       type: string
+ *                       example: john
+ *                     email:
+ *                       type: string
+ *                       example: 3333@test.com
  *       404:
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "User not found"
  */
 userRoutes.get('/:userId', GetUser);
 

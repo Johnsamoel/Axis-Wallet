@@ -5,6 +5,8 @@ import { AccountStatus } from "../utils/enums/AccountStatus";
 import { TransactionStatus , TransactionTypes } from "../utils/enums/TransactionsStatus";
 import {  createTransaction } from './transactions.Repo';
 import CustomError from '../classes/CustomError';
+import { PrismaClient } from '@prisma/client';
+
 
 // create user
 const createAccountRepo = async ({ userId }: CreateAccount) => {
@@ -99,7 +101,7 @@ const getAccountByUserIdRepo = async (userId: string) => {
 const depositeAccountRepo = async ({ accountId, amount }: DepositeAccount) => {
     try {
       // Run the operations inside a transaction to ensure atomicity
-      const result = await prisma.$transaction(async (prisma) => {
+      const result = await prisma.$transaction(async (prism: any) => {
         // Retrieve both accounts within the transaction
         const account = await  getAccount(accountId)
        
@@ -156,7 +158,7 @@ const depositeAccountRepo = async ({ accountId, amount }: DepositeAccount) => {
 const WithdrawAccountRepo = async ({ accountId, amount }: DepositeAccount) => {
   try {
     // Run the operations inside a transaction to ensure atomicity
-    const result = await prisma.$transaction(async (prisma) => {
+    const result = await prisma.$transaction(async (prisma: any) => {
       // Retrieve both accounts within the transaction
       const account = await  getAccount(accountId)
      
