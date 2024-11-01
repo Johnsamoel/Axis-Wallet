@@ -101,7 +101,7 @@ const getAccountByUserIdRepo = async (userId: string) => {
 const depositeAccountRepo = async ({ accountId, amount }: DepositeAccount) => {
     try {
       // Run the operations inside a transaction to ensure atomicity
-      const result = await prisma.$transaction(async (prism: any) => {
+      const result = await prisma.$transaction(async (prisma: any) => {
         // Retrieve both accounts within the transaction
         const account = await  getAccount(accountId)
        
